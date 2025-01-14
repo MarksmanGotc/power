@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const statsSummary = document.getElementById("statsSummary");
 
     function updateTypeLabels(troopType, container) {
-        const labels = container.querySelectorAll("label");
-        labels.forEach(label => {
-            label.textContent = label.textContent.replace(/\[type\]/g, troopType);
+        const typeSpans = container.querySelectorAll("label span");
+        typeSpans.forEach(span => {
+            span.textContent = troopType;
         });
     }
 
@@ -24,7 +24,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         </svg></p>
                     </div>
                     <div class="type">
-                        <label for="cars">Troop type</label>
+                        <label for="typeAttack">
+                            <span>[type]</span> attack
+                        </label>
                         <select name="trooptype" class="dynamic-trooptype">
                             <option value="infantry">Infantry</option>
                             <option value="ranged">Ranged</option>
@@ -33,23 +35,33 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     <div class="typeStats">
                         <div>
-                            <label>[type] attack</label>
+                            <label>
+                                <span>[type]</span> attack
+                            </label>
                             <input type="text" class="numeric-input" name="typeAttack" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div>
-                            <label>Marcher [type] attack vs Player's SOP</label>
+                            <label>
+                                Marcher <span>[type]</span> attack vs Player's SOP
+                            </label>
                             <input type="text" class="numeric-input" name="marcher" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div>
-                            <label>[type] attack vs Player's Infantry</label>
+                            <label>
+                                <span>[type]</span> attack vs Player's Infantry
+                            </label>
                             <input type="text" class="numeric-input" name="vs_inf" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div>
-                            <label>[type] attack vs Player's Ranged</label>
+                            <label>
+                                <span>[type]</span> attack vs Player's Ranged
+                            </label>
                             <input type="text" class="numeric-input" name="vs_ran" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                         </div>
                         <div>
-                            <label>[type] attack vs Player's Cavalry</label>
+                            <label>
+                                <span>[type]</span> attack vs Player's Cavalry
+                            </label>
                             <input type="text" class="numeric-input" name="vs_cav" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                         </div>
                     </div>
@@ -82,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         statsSummary.style.display = "flex";
 
         const allStats = document.querySelectorAll(".stats");
-        statsSummary.innerHTML = '<button id="closeResults">\n            <span>Click here to go back and modify your selections</span>\n            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">\n                <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4-9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4-9.4 24.6-9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"></path>\n            </svg></button>';
+        statsSummary.innerHTML = '<button id="closeResults"><span>Click here to go back and modify your selections</span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4-9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4-9.4 24.6-9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"></path></svg></button>';
 
         allStats.forEach(stats => {
             const troopType = stats.querySelector(".dynamic-trooptype").value;
