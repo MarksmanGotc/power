@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class="type">
                     <label for="typeAttack">
-                        Troop type
+                        <span>[type]</span> attack
                     </label>
                     <select name="trooptype" class="dynamic-trooptype">
                         <option value="infantry">Infantry</option>
@@ -83,14 +83,16 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
         `;
 
+        otherStatsContainer.appendChild(statsContainer);
         updateTypeLabels(troopType);
+
+        // Scroll to the newly added stats element
+        statsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
 
         const removeButton = statsContainer.querySelector(".removeButton");
         removeButton.addEventListener("click", () => {
             statsContainer.remove();
         });
-
-        otherStatsContainer.appendChild(statsContainer);
     }
 
     document.querySelector("select[name=trooptype]").addEventListener("change", (e) => {
