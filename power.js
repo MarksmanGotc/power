@@ -5,16 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
     otherStatsContainer.classList.add("otherStats");
     wrapper.insertBefore(otherStatsContainer, document.querySelector(".buttons"));
 
-    function updateTypeLabels(troopType) {
-        const allStats = otherStatsContainer.querySelectorAll(".stats");
-        allStats.forEach(stats => {
-            const typeSpans = stats.querySelectorAll("label span");
-            typeSpans.forEach(span => {
-                span.textContent = troopType;
-            });
+    // Updates type labels in the given stats container
+    function updateTypeLabels(statsContainer, troopType) {
+        const typeSpans = statsContainer.querySelectorAll("label span");
+        typeSpans.forEach(span => {
+            span.textContent = troopType;
         });
     }
 
+    // Adds a new stats section
     function addNew() {
         const troopTypeElement = document.querySelector("select[name=trooptype]");
         const troopType = troopTypeElement ? troopTypeElement.value : "infantry";
@@ -29,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     </svg></p>
                 </div>
                 <div class="type">
-                    <label for="typeAttack">
-                        <span>[type]</span> Troop type
+                    <label for="trooptype">
+                        Troop type
                     </label>
                     <select name="trooptype" class="dynamic-trooptype">
                         <option value="infantry">Infantry</option>
@@ -84,22 +83,26 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
 
         otherStatsContainer.appendChild(statsContainer);
-        updateTypeLabels(troopType);
+
+        // Set the initial troop type for the new stats container
+        updateTypeLabels(statsContainer, troopType);
 
         // Scroll to the newly added stats element
         statsContainer.scrollIntoView({ behavior: "smooth", block: "start" });
 
+        // Add change listener for the troop type select within this stats element
+        statsContainer.querySelector(".dynamic-trooptype").addEventListener("change", (e) => {
+            updateTypeLabels(statsContainer, e.target.value);
+        });
+
+        // Add remove button functionality
         const removeButton = statsContainer.querySelector(".removeButton");
         removeButton.addEventListener("click", () => {
             statsContainer.remove();
         });
-
-        // Add event listener for the troop type select within this stats element
-        statsContainer.querySelector(".dynamic-trooptype").addEventListener("change", (e) => {
-            updateTypeLabels(e.target.value);
-        });
     }
 
+    // Calculates and displays the stats summary
     function calculateStats() {
         wrapper.style.display = "none";
         statsSummary.style.display = "flex";
@@ -147,8 +150,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // Add change listener for the initial troop type select
     document.querySelector("select[name=trooptype]").addEventListener("change", (e) => {
-        updateTypeLabels(e.target.value);
+        const firstStats = document.querySelector(".wrapper .stats");
+        if (firstStats) {
+            updateTypeLabels(firstStats, e.target.value);
+        }
     });
 
     window.addNew = addNew;
