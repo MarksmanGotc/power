@@ -10,7 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function addNew() {
-        const troopType = document.getElementById("trooptype").value;
+        const troopTypeElement = document.querySelector("select[name=trooptype]");
+        const troopType = troopTypeElement ? troopTypeElement.value : "infantry";
 
         const statsContainer = document.createElement("div");
         statsContainer.classList.add("otherStats");
