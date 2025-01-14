@@ -106,34 +106,45 @@ document.addEventListener("DOMContentLoaded", () => {
     function calculateStats() {
         wrapper.style.display = "none";
         statsSummary.style.display = "flex";
-
-        const allStats = otherStatsContainer.querySelectorAll(".stats");
-        statsSummary.innerHTML = '<button id="closeResults">\n            <span>Click here to go back and modify your selections</span>\n            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">\n                <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4-9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4-9.4 24.6-9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"></path>\n            </svg></button>';
-
+    
+        // Collect all stats sections, including the first default and those in otherStatsContainer
+        const defaultStats = document.querySelector(".wrapper .stats");
+        const otherStats = otherStatsContainer.querySelectorAll(".stats");
+        const allStats = defaultStats ? [defaultStats, ...otherStats] : otherStats;
+    
+        statsSummary.innerHTML = `
+            <button id="closeResults">
+                <span>Click here to go back and modify your selections</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                    <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4-9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4-9.4 24.6-9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"></path>
+                </svg>
+            </button>
+        `;
+    
         allStats.forEach(stats => {
             const troopType = stats.querySelector(".dynamic-trooptype").value;
             const hero = stats.querySelector(".text-input[name=hero]").value.trim();
             const dragon = stats.querySelector("input[name=dragon]").checked;
-
+    
             const typeAttack = parseFloat(stats.querySelector("input[name=typeAttack]").value) || 0;
             const marcher = parseFloat(stats.querySelector("input[name=marcher]").value) || 0;
             const vsInf = parseFloat(stats.querySelector("input[name=vs_inf]").value) || 0;
             const vsRan = parseFloat(stats.querySelector("input[name=vs_ran]").value) || 0;
             const vsCav = parseFloat(stats.querySelector("input[name=vs_cav]").value) || 0;
-
+    
             const attackVsInf = (((typeAttack + marcher) / 100) * vsInf + (typeAttack + marcher)) + vsInf;
             const attackVsRan = (((typeAttack + marcher) / 100) * vsRan + (typeAttack + marcher)) + vsRan;
             const attackVsCav = (((typeAttack + marcher) / 100) * vsCav + (typeAttack + marcher)) + vsCav;
-
+    
             const average = ((attackVsInf + attackVsRan + attackVsCav) / 3).toFixed(2);
-
+    
             let description = `${troopType} attack`;
             if (hero || dragon) {
                 description += " with";
                 if (hero) description += ` ${hero} hero`;
                 if (dragon) description += hero ? " and dragon" : " dragon";
             }
-
+    
             statsSummary.innerHTML += `
                 <div class="statsCard">
                     <p>${description}</p>
@@ -143,12 +154,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     <p>Average: ${average}</p>
                 </div>`;
         });
-
+    
         document.getElementById("closeResults").addEventListener("click", () => {
             wrapper.style.display = "block";
             statsSummary.style.display = "none";
         });
     }
+
 
     // Add change listener for the initial troop type select
     document.querySelector("select[name=trooptype]").addEventListener("change", (e) => {
