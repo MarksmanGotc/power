@@ -126,11 +126,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const hero = stats.querySelector(".text-input[name=hero]").value.trim();
             const dragon = stats.querySelector("input[name=dragon]").checked;
     
-            const typeAttack = parseFloat(stats.querySelector("input[name=typeAttack]").value) || 0;
-            const marcher = parseFloat(stats.querySelector("input[name=marcher]").value) || 0;
-            const vsInf = parseFloat(stats.querySelector("input[name=vs_inf]").value) || 0;
-            const vsRan = parseFloat(stats.querySelector("input[name=vs_ran]").value) || 0;
-            const vsCav = parseFloat(stats.querySelector("input[name=vs_cav]").value) || 0;
+            function parseNumericInput(value) {
+                if (!value) return 0; // Palauttaa 0, jos arvo on tyhjä
+                return parseFloat(value.replace(",", "."));
+            }
+            
+            // Käytä päivitettyä parseNumericInput-funktiota laskennassa
+            const typeAttack = parseNumericInput(stats.querySelector("input[name=typeAttack]").value);
+            const marcher = parseNumericInput(stats.querySelector("input[name=marcher]").value);
+            const vsInf = parseNumericInput(stats.querySelector("input[name=vs_inf]").value);
+            const vsRan = parseNumericInput(stats.querySelector("input[name=vs_ran]").value);
+            const vsCav = parseNumericInput(stats.querySelector("input[name=vs_cav]").value);
+
     
             const attackVsInf = (((typeAttack + marcher) / 100) * vsInf + (typeAttack + marcher)) + vsInf;
             const attackVsRan = (((typeAttack + marcher) / 100) * vsRan + (typeAttack + marcher)) + vsRan;
