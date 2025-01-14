@@ -102,7 +102,7 @@ button:hover {
     gap: 10px; /* Väli boksien välillä */
 }
 
-#costSummary{
+#statsSummary{
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 20px;
@@ -117,7 +117,7 @@ button:hover {
     justify-content: center;
 }
 
-#costSummary > div {
+#statsSummary > div {
     background: #fff;
 }
 
