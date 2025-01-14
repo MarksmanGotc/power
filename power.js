@@ -40,31 +40,31 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="typeStats">
                     <div>
                         <label>
-                            <span>[type]</span> attack
+                            <span>Infantry</span> attack
                         </label>
                         <input type="text" class="numeric-input" name="typeAttack" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                     </div>
                     <div>
                         <label>
-                            Marcher <span>[type]</span> attack vs Player's SOP
+                            Marcher <span>Infantry</span> attack vs Player's SOP
                         </label>
                         <input type="text" class="numeric-input" name="marcher" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                     </div>
                     <div>
                         <label>
-                            <span>[type]</span> attack vs Player's Infantry
+                            <span>Infantry</span> attack vs Player's Infantry
                         </label>
                         <input type="text" class="numeric-input" name="vs_inf" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                     </div>
                     <div>
                         <label>
-                            <span>[type]</span> attack vs Player's Ranged
+                            <span>Infantry</span> attack vs Player's Ranged
                         </label>
                         <input type="text" class="numeric-input" name="vs_ran" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                     </div>
                     <div>
                         <label>
-                            <span>[type]</span> attack vs Player's Cavalry
+                            <span>Infantry</span> attack vs Player's Cavalry
                         </label>
                         <input type="text" class="numeric-input" name="vs_cav" placeholder="value" pattern="[0-9]*" inputmode="numeric">
                     </div>
