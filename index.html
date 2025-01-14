@@ -10,7 +10,7 @@
 		<meta property="og:site_name" content="Power calculator">
 		<link rel="icon" type="image/png" href="favicon.png">
 		<link rel="stylesheet" href="style.css?v=1">
-		<!-- <script type="text/javascript" src="power.js"></script>-->
+		<script type="text/javascript" src="power.js"></script>
 	</head>
 	<body>
 		<div class="page">
@@ -29,32 +29,32 @@
 						<div class="typeStats">
 							<div>
 								<label>[type] attack</label>
-								<input type="text" class="numeric-input" id="typeAttack" name="typeAttack" placeholder="value" pattern="[0-9]*" inputmode="numeric">
+								<input type="text" class="numeric-input" name="typeAttack" placeholder="value" pattern="[0-9]*" inputmode="numeric">
 							</div>
 							<div>
 								<label>Marcher [type] attack vs Player's SOP</label>
-								<input type="text" class="numeric-input" id="marcher" name="marcher" placeholder="value" pattern="[0-9]*" inputmode="numeric">
+								<input type="text" class="numeric-input" name="marcher" placeholder="value" pattern="[0-9]*" inputmode="numeric">
 							</div>
 							<div>
 								<label>[type] attack vs Player's Infantry</label>
-								<input type="text" class="numeric-input" id="vs_inf" name="vs_inf" placeholder="value" pattern="[0-9]*" inputmode="numeric">
+								<input type="text" class="numeric-input" name="vs_inf" placeholder="value" pattern="[0-9]*" inputmode="numeric">
 							</div>
 							<div>
 								<label>[type] attack vs Player's Ranged</label>
-								<input type="text" class="numeric-input" id="vs_ran" name="vs_ran" placeholder="value" pattern="[0-9]*" inputmode="numeric">
+								<input type="text" class="numeric-input" name="vs_ran" placeholder="value" pattern="[0-9]*" inputmode="numeric">
 							</div>
 							<div>
 								<label>[type] attack vs Player's Cavalry</label>
-								<input type="text" class="numeric-input" id="vs_cav" name="vs_cav" placeholder="value" pattern="[0-9]*" inputmode="numeric">
+								<input type="text" class="numeric-input" name="vs_cav" placeholder="value" pattern="[0-9]*" inputmode="numeric">
 							</div>
 						</div>
 						<div class="otherInfo">
 							<div class="hero">
 								<label>Hero</label>
-								<input type="text" class="text-input" id="hero" name="hero" placeholder="Name">
+								<input type="text" class="text-input" name="hero" placeholder="Name">
 							</div>
 							<div class="dragon">
-								<input type="checkbox" id="dragon" name="dragon" value="dragon">
+								<input type="checkbox" name="dragon" value="dragon">
 								<label for="dragon">I used a Dragon</label>
 							</div>
 						</div>
@@ -63,7 +63,7 @@
 				<div class="buttons">
 					<button onclick="addNew()"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"></path></svg> Add a new one</button>
 					
-					<button onclick="calculateCost()">Calculate</button>
+					<button onclick="calculateStats()">Calculate</button>
 				</div>
 			</div>
 			<div id="costSummary"></div>
@@ -71,7 +71,7 @@
 		</div>
 		<footer>
 			<div>
-				<p>Made by; Mark</p><p>Discord: @Nooxel</p>
+				<p>Made by; Discord: @Nooxel</p>
 			</div>
 		</footer>
 	
