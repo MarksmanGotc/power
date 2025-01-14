@@ -41,7 +41,7 @@ select, input[type="number"], input {
 	border: 1px solid #ddd;
 	box-sizing: border-box;
 }
-.dragon input#dragon {
+.dragon input {
     width: auto;
     margin: 0;
 }
