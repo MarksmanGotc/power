@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
                 <div class="type">
                     <label for="typeAttack">
-                        <span>[type]</span> attack
+                        <span>[type]</span> Troop type
                     </label>
                     <select name="trooptype" class="dynamic-trooptype">
                         <option value="infantry">Infantry</option>
@@ -93,6 +93,58 @@ document.addEventListener("DOMContentLoaded", () => {
         removeButton.addEventListener("click", () => {
             statsContainer.remove();
         });
+
+        // Add event listener for the troop type select within this stats element
+        statsContainer.querySelector(".dynamic-trooptype").addEventListener("change", (e) => {
+            updateTypeLabels(e.target.value);
+        });
+    }
+
+    function calculateStats() {
+        wrapper.style.display = "none";
+        statsSummary.style.display = "flex";
+
+        const allStats = otherStatsContainer.querySelectorAll(".stats");
+        statsSummary.innerHTML = '<button id="closeResults">\n            <span>Click here to go back and modify your selections</span>\n            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">\n                <path d="M345 137c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-119 119L73 103c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l119 119L39 375c-9.4-9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l119-119L311 409c9.4-9.4 24.6-9.4 33.9 0s9.4-24.6 0-33.9l-119-119L345 137z"></path>\n            </svg></button>';
+
+        allStats.forEach(stats => {
+            const troopType = stats.querySelector(".dynamic-trooptype").value;
+            const hero = stats.querySelector(".text-input[name=hero]").value.trim();
+            const dragon = stats.querySelector("input[name=dragon]").checked;
+
+            const typeAttack = parseFloat(stats.querySelector("input[name=typeAttack]").value) || 0;
+            const marcher = parseFloat(stats.querySelector("input[name=marcher]").value) || 0;
+            const vsInf = parseFloat(stats.querySelector("input[name=vs_inf]").value) || 0;
+            const vsRan = parseFloat(stats.querySelector("input[name=vs_ran]").value) || 0;
+            const vsCav = parseFloat(stats.querySelector("input[name=vs_cav]").value) || 0;
+
+            const attackVsInf = (((typeAttack + marcher) / 100) * vsInf + (typeAttack + marcher)) + vsInf;
+            const attackVsRan = (((typeAttack + marcher) / 100) * vsRan + (typeAttack + marcher)) + vsRan;
+            const attackVsCav = (((typeAttack + marcher) / 100) * vsCav + (typeAttack + marcher)) + vsCav;
+
+            const average = ((attackVsInf + attackVsRan + attackVsCav) / 3).toFixed(2);
+
+            let description = `${troopType} attack`;
+            if (hero || dragon) {
+                description += " with";
+                if (hero) description += ` ${hero} hero`;
+                if (dragon) description += hero ? " and dragon" : " dragon";
+            }
+
+            statsSummary.innerHTML += `
+                <div class="statsCard">
+                    <p>${description}</p>
+                    <p>Attack vs Infantry: ${attackVsInf.toFixed(2)}</p>
+                    <p>Attack vs Ranged: ${attackVsRan.toFixed(2)}</p>
+                    <p>Attack vs Cavalry: ${attackVsCav.toFixed(2)}</p>
+                    <p>Average: ${average}</p>
+                </div>`;
+        });
+
+        document.getElementById("closeResults").addEventListener("click", () => {
+            wrapper.style.display = "block";
+            statsSummary.style.display = "none";
+        });
     }
 
     document.querySelector("select[name=trooptype]").addEventListener("change", (e) => {
@@ -100,4 +152,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     window.addNew = addNew;
+    window.calculateStats = calculateStats;
 });
