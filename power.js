@@ -231,7 +231,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			let description = `${troopType} attack`;
 			if (hero || dragon) {
 				description += " with";
-				if (hero) description += ` ${hero} hero`;
+				if (hero) description += ` ${hero}`;
 				if (dragon) description += hero ? " and dragon" : " dragon";
 			}
 
