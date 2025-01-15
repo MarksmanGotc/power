@@ -33,6 +33,19 @@ label {
 	color: #08425a;
 }
 
+.otherStats .stats {
+    border-top: 1px solid #dadada;
+    padding: 20px 0px;
+}
+
+.stats.start {
+    padding-bottom: 20px;
+}
+
+.removeButton svg {
+    padding-left: 10px;
+}
+
 select, input[type="number"], input {
 	width: 100%;
 	padding: 8px;
@@ -120,16 +133,29 @@ button:hover {
 #statsSummary > div {
     background: #fff;
 }
+#statsSummary .share {
+    width: 100%;
+    background: transparent;
+}
+
+.troopStats {
+    position: relative;
+}
 
 
 .removeButton p {
     margin: 0;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .removeButton {
-    justify-content: flex-end !important;
-    height: 22px;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .removeButton p:hover svg {
     fill: #5D1049;
@@ -165,6 +191,98 @@ footer p {
 	animation-iteration-count: 2;
 }
 
+#statsSummary > button#closeResults {
+    background: transparent;
+    column-gap: 20px;
+	padding: 0px 20px;
+    margin: 0;
+    color: #08425a;
+	width: 100%;
+	display: flex;
+}
+
+#statsSummary > button#closeResults svg {
+    height: 20px;
+    fill: #08425a;
+	transition: 0.2s;
+}
+
+#statsSummary > button#closeResults:hover svg {
+    transform: rotate(90deg);
+}
+
+#statsSummary > button#closeResults:hover span {
+    text-decoration: underline;
+}
+
+label span {
+    text-transform: capitalize;
+}
+
+.statsCard {
+    border: 1px solid #ccc;
+    padding: 10px;
+    flex: 1 1 24%;
+    box-sizing: border-box;
+    min-width: 200px;
+    box-shadow: 0px 2px 10px 0px #c5c5c5;
+}
+
+.statsCard h4 {
+    margin-top: 0;
+    color: #08425a;
+    text-transform: capitalize;
+}
+
+.statsCardSummary {
+    border: 1px solid #ccc;
+    padding: 10px;
+    flex: 1 1 100%;
+    box-sizing: border-box;
+    min-width: 200px;
+    box-shadow: 0px 2px 10px 0px #c5c5c5;
+    counter-reset: list-counter;
+}
+
+.statsCardSummary p{
+    margin-top: 0;
+    color: #000000;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.statsCardSummary p {
+    position: relative;
+    padding-left: 5px;
+}
+
+.statsCardSummary p:last-child {
+    margin: 0;
+}
+
+.statsCardSummary h4 {
+    margin-top: 0;
+    color: #08425a;
+}
+
+.error {
+    border: 2px solid red;
+    background-color: #ffe6e6;
+}
+
+button#shareResults {
+    margin-top: 0;
+    width: 220px;
+    max-width: 220px;
+}
+
+/* Mobiilinäkymä, boksit allekkain */
+@media (max-width: 600px) {
+    .statsCard {
+        flex: 1 1 40%;
+	}
+}
+
 @media (max-width: 600px) {
 	body {
 		min-height: initial;
@@ -172,4 +290,12 @@ footer p {
 	footer div {
 		width: max-content;
 	}
+}
+@keyframes highlight {
+    0%, 100% {
+        border-top: 1px solid #dadada;
+    }
+    50% {
+        border-top: 1px solid #c55252;
+    }
 }
