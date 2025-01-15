@@ -284,14 +284,6 @@ button#shareResults {
 	}
 }
 
-@media (max-width: 600px) {
-	body {
-		min-height: initial;
-	}
-	footer div {
-		width: max-content;
-	}
-}
 @keyframes highlight {
     0%, 100% {
         border-top: 1px solid #dadada;
