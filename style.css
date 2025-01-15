@@ -283,6 +283,14 @@ button#shareResults {
         flex: 1 1 40%;
 	}
 }
+@media (max-width: 600px) {
+	body {
+		min-height: initial;
+	}
+	footer div {
+		width: max-content;
+	}
+}
 
 @keyframes highlight {
     0%, 100% {
