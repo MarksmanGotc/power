@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 	
+	const firstStats = document.querySelector(".wrapper .stats.start");
+    if (firstStats) {
+        const firstTroopTypeSelect = firstStats.querySelector(".dynamic-trooptype");
+        firstTroopTypeSelect.addEventListener("change", (e) => {
+            updateTypeLabels(firstStats, e.target.value);
+        });
+    }
+	
     function updateTypeLabels(statsContainer, troopType) {
         const typeSpans = statsContainer.querySelectorAll("label span");
         typeSpans.forEach(span => {
@@ -130,13 +138,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         <input type="text" class="text-input" name="hero" placeholder="Name">
                     </div>
                     <div class="dragon">
-                        <input type="checkbox" name="dragon" value="dragon">
-                        <label for="dragon">I used a Dragon</label>
+                        <input type="checkbox" name="dragon" id="dragonCheckbox${Date.now()}" value="dragon">
+                        <label for="dragonCheckbox${Date.now()}">I used a Dragon</label>
                     </div>
                 </div>
             </div>
         `;
 
+		
         otherStatsContainer.appendChild(statsContainer);
 
         updateTypeLabels(statsContainer, troopType);
@@ -151,6 +160,8 @@ document.addEventListener("DOMContentLoaded", () => {
         statsContainer.querySelector(".removeButton").addEventListener("click", () => {
             statsContainer.remove();
         });
+
+
     }
 
     function calculateStats() {
