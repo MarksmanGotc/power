@@ -28,17 +28,19 @@ document.addEventListener("DOMContentLoaded", () => {
         return parseFloat(value.replace(",", "."));
     }
 
-    function encodeData(data) {
-        return encodeURIComponent(JSON.stringify(data));
-    }
+	// Enkoodaus Base64-muotoon
+	function encodeData(data) {
+		return btoa(JSON.stringify(data));
+	}
 
-    function decodeData(encoded) {
-        try {
-            return JSON.parse(decodeURIComponent(encoded));
-        } catch {
-            return null;
-        }
-    }
+	// Dekoodaus Base64-muodosta
+	function decodeData(encoded) {
+		try {
+			return JSON.parse(atob(encoded));
+		} catch {
+			return null;
+		}
+	}
 
     function populateInputsFromData(data) {
         data.forEach((statsData, index) => {
