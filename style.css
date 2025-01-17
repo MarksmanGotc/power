@@ -277,12 +277,42 @@ button#shareResults {
     max-width: 220px;
 }
 
+.attdef {
+    display: inline-flex;
+    column-gap: 15px;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.attdef > button {
+    width: 50%;
+    margin: 0px;
+}
+
+.clear button {
+    margin-top: 0;
+    width: 100%;
+}
+
+.clear {
+    padding-bottom: 10px;
+}
+
+.attdef > button.active {
+    background-color: #08425a; /* Tummempi väri aktiiviselle napille */
+    color: white;
+    font-weight: bold;
+    cursor: default;
+    text-decoration: underline;
+}
+
 /* Mobiilinäkymä, boksit allekkain */
 @media (max-width: 600px) {
     .statsCard {
         flex: 1 1 40%;
 	}
 }
+
 @media (max-width: 600px) {
 	body {
 		min-height: initial;
@@ -291,7 +321,6 @@ button#shareResults {
 		width: max-content;
 	}
 }
-
 @keyframes highlight {
     0%, 100% {
         border-top: 1px solid #dadada;
