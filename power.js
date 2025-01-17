@@ -497,7 +497,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		const decodedData = decodeData(encodedData);
 		const calculationType = urlParams.get("type"); // Hae type-parametri (attack/defence)
 
-		if (decodedData && Array.isArray(decodedData) && calculationType) {
+		if (decodedData && Array.isArray(decodedData)){
 			// Piilota wrapper ja näytä statsSummary
 			wrapper.classList.add("none");
 			statsSummary.style.display = "flex";
