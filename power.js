@@ -508,8 +508,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			} else if (calculationType === "attack") {
 				attackButton.click(); // Aktivoi Attack-puoli
 			} else {
-				console.error("Unknown calculation type:", calculationType);
-				return; // Lopeta, jos type ei ole validi
+				attackButton.click(); // Aktivoi Attack-puoli
 			}
 
 			// Täytä tiedot lomakkeeseen
