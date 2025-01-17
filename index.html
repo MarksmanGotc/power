@@ -1,73 +1,121 @@
 <html lang="en"><head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="initial-scale=1,width=device-width">
-		<title>Power calculator</title>
-		<meta property="og:title" content="Power calculator">
+		<title>Power Calculator - Attack and Defence Optimization</title>
+		<meta property="og:title" content="Power Calculator - Attack and Defence Optimization">
+		<meta property="og:description" content="Optimize your attack and defence strategies with the Power Calculator. Plan smarter with accurate calculations for both combat sides">
+		<meta property="og:site_name" content="Power Calculator">
 		<meta property="og:type" content="website">
 		<meta property="og:url" content="https://marksmangotc.github.io/power/">
 		<meta property="og:image" content="image.png">
-		<meta property="og:description" content="Power calculator">
-		<meta property="og:site_name" content="Power calculator">
 		<link rel="icon" type="image/png" href="favicon.png">
-		<link rel="stylesheet" href="style.css?v=1.1">
-		<script type="text/javascript" src="power.js?v=1.2"></script>
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-RXNQRD1RC8"></script>
-		<script>
-		  window.dataLayer = window.dataLayer || [];
-		  function gtag(){dataLayer.push(arguments);}
-		  gtag('js', new Date());
-		
-		  gtag('config', 'G-RXNQRD1RC8', { 'anonymize_ip': true });
-		</script>
+		<link rel="stylesheet" href="style.css?v=1.21">
+		<script type="text/javascript" src="power.js?v=1.21"></script>
 	</head>
 	<body>
 		<div class="page">
 			<div class="wrapper">
 				<h1>Power calculator</h1>
-				<div class="stats start">
-					<div class="troopStats">
-						<div class="type">
-							<label for="trooptype">Troop type</label>
-							<select name="trooptype" class="dynamic-trooptype">
-								<option value="infantry">Infantry</option>
-								<option value="ranged">Ranged</option>
-								<option value="cavalry">Cavalry</option>
-							</select>
-						</div>
-						<div class="typeStats">
-							<div>
-								<label><span>Infantry</span> attack</label>
-								<input type="text" class="numeric-input" name="typeAttack" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+				<div class="attdef">
+					<button class="att active">Attack</button>
+					<button class="def">Defence</button>
+				</div>
+				<div class="attackStats">
+					<div class="stats start">
+						<div class="troopStats">
+							<div class="type">
+								<label for="trooptype">Troop type</label>
+								<select name="trooptype" class="dynamic-trooptype">
+									<option value="infantry">Infantry</option>
+									<option value="ranged">Ranged</option>
+									<option value="cavalry">Cavalry</option>
+								</select>
 							</div>
-							<div>
-								<label>Marcher <span>Infantry</span> attack vs Player's SOP</label>
-								<input type="text" class="numeric-input" name="marcher" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+							<div class="typeStats">
+								<div>
+									<label><span>Infantry</span> attack</label>
+									<input type="text" class="numeric-input" name="typeAttack" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label>Marcher <span>Infantry</span> attack vs Player's SOP</label>
+									<input type="text" class="numeric-input" name="marcher" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> attack vs Player's Infantry</label>
+									<input type="text" class="numeric-input" name="vs_inf" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> attack vs Player's Ranged</label>
+									<input type="text" class="numeric-input" name="vs_ran" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> attack vs Player's Cavalry</label>
+									<input type="text" class="numeric-input" name="vs_cav" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
 							</div>
-							<div>
-								<label><span>Infantry</span> attack vs Player's Infantry</label>
-								<input type="text" class="numeric-input" name="vs_inf" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
-							</div>
-							<div>
-								<label><span>Infantry</span> attack vs Player's Ranged</label>
-								<input type="text" class="numeric-input" name="vs_ran" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
-							</div>
-							<div>
-								<label><span>Infantry</span> attack vs Player's Cavalry</label>
-								<input type="text" class="numeric-input" name="vs_cav" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
-							</div>
-						</div>
-						<div class="otherInfo">
-							<div class="hero">
-								<label>Hero</label>
-								<input type="text" class="text-input" name="hero" placeholder="Name">
-							</div>
-							<div class="dragon">
-								<input type="checkbox" id="dragoncheck" name="dragon" value="dragon">
-								<label for="dragoncheck">I used a Dragon</label>
+							<div class="otherInfo">
+								<div class="hero">
+									<label>Hero</label>
+									<input type="text" class="text-input" name="hero" placeholder="Name">
+								</div>
+								<div class="dragon">
+									<input type="checkbox" id="dragoncheckdef" name="dragon" value="dragon">
+									<label for="dragoncheckdef">I used a Dragon</label>
+								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+				<div class="defenceStats none">
+					<div class="stats start">
+						<div class="troopStats">
+							<div class="type">
+								<label for="trooptype">Troop type</label>
+								<select name="trooptype" class="dynamic-trooptype">
+									<option value="infantry">Infantry</option>
+									<option value="ranged">Ranged</option>
+									<option value="cavalry">Cavalry</option>
+								</select>
+							</div>
+							<div class="typeStats">
+								<div>
+									<label><span>Infantry</span> defence</label>
+									<input type="text" class="numeric-input" name="typeDefence" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label>Defender defence</label>
+									<input type="text" class="numeric-input" name="defDefence" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> defence vs Player's SOP</label>
+									<input type="text" class="numeric-input" name="marcherD" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> defence vs Player's Infantry</label>
+									<input type="text" class="numeric-input" name="vs_inf_d" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> defence vs Player's Ranged</label>
+									<input type="text" class="numeric-input" name="vs_ran_d" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+								<div>
+									<label><span>Infantry</span> defence vs Player's Cavalry</label>
+									<input type="text" class="numeric-input" name="vs_cav_d" placeholder="value" pattern="[0-9]*" inputmode="numeric" required>
+								</div>
+							</div>
+							<div class="otherInfo">
+								<div class="hero">
+									<label>Hero</label>
+									<input type="text" class="text-input" name="hero" placeholder="Name">
+								</div>
+								<div class="dragon">
+									<input type="checkbox" id="dragoncheck" name="dragon" value="dragon">
+									<label for="dragoncheck">I used a Dragon</label>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="otherStatsDef"></div>
 				</div>
 				<div class="buttons">
 					<button onclick="addNew()"><svg xmlns="http://www.w3.org/2000/svg" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"></path></svg> Add a new one</button>
