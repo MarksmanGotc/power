@@ -351,7 +351,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 
 			if (isAttackVisible) {
-				// Attack laskenta
+				// Attack-laskenta
 				const typeAttack = parseNumericInput(stats.querySelector("input[name=typeAttack]").value);
 				const marcher = parseNumericInput(stats.querySelector("input[name=marcher]").value);
 				const vsInf = parseNumericInput(stats.querySelector("input[name=vs_inf]").value);
@@ -372,19 +372,19 @@ document.addEventListener("DOMContentLoaded", () => {
 						<p>Attack vs Cavalry: ${formatNumber(attackVsCav)}</p>
 						<p>Average: ${formatNumber(average)}</p>
 					</div>`;
-				summaryData.push({ description: `${troopType} attack`, average });
+				summaryData.push({ description, average });
 			} else {
-				// Defence laskenta
+				// Defence-laskenta
 				const typeDefence = parseNumericInput(stats.querySelector("input[name=typeDefence]").value);
-				const defenderDefence = parseNumericInput(stats.querySelector("input[name=defDefence]").value);
-				const sopDefence = parseNumericInput(stats.querySelector("input[name=marcherD]").value);
+				const defDefence = parseNumericInput(stats.querySelector("input[name=defDefence]").value);
+				const marcherD = parseNumericInput(stats.querySelector("input[name=marcherD]").value);
 				const vsInfD = parseNumericInput(stats.querySelector("input[name=vs_inf_d]").value);
 				const vsRanD = parseNumericInput(stats.querySelector("input[name=vs_ran_d]").value);
 				const vsCavD = parseNumericInput(stats.querySelector("input[name=vs_cav_d]").value);
 
-				const defVsInf = (((typeDefence + defenderDefence + sopDefence) / 100) * vsInfD + (typeDefence + defenderDefence + sopDefence)) + vsInfD;
-				const defVsRan = (((typeDefence + defenderDefence + sopDefence) / 100) * vsRanD + (typeDefence + defenderDefence + sopDefence)) + vsRanD;
-				const defVsCav = (((typeDefence + defenderDefence + sopDefence) / 100) * vsCavD + (typeDefence + defenderDefence + sopDefence)) + vsCavD;
+				const defVsInf = (((typeDefence + defDefence + marcherD) / 100) * vsInfD + (typeDefence + defDefence + marcherD)) + vsInfD;
+				const defVsRan = (((typeDefence + defDefence + marcherD) / 100) * vsRanD + (typeDefence + defDefence + marcherD)) + vsRanD;
+				const defVsCav = (((typeDefence + defDefence + marcherD) / 100) * vsCavD + (typeDefence + defDefence + marcherD)) + vsCavD;
 
 				const averageDef = ((defVsInf + defVsRan + defVsCav) / 3);
 
@@ -396,10 +396,11 @@ document.addEventListener("DOMContentLoaded", () => {
 						<p>Defence vs Cavalry: ${formatNumber(defVsCav)}</p>
 						<p>Average: ${formatNumber(averageDef)}</p>
 					</div>`;
-				summaryData.push({ description: `${troopType} defence`, average: averageDef });
+				summaryData.push({ description, average: averageDef });
 			}
 		});
 
+		// Lisää yhteenveto
 		if (summaryData.length > 1) {
 			summaryData.sort((a, b) => b.average - a.average);
 
@@ -413,6 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					${summaryContent}
 				</div>`;
 		}
+
 
 		// Kopiointitoiminto
 		const shareContainer = document.createElement("div");
